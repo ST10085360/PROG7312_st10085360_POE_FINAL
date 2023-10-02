@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,44 +26,113 @@ namespace BookSoek
         public List<BookModel> OrderedList = new List<BookModel>();
         public List<BookModel> UserList = new List<BookModel>();
 
-        public int order = 0;
+        public int order;
 
         public int score = 0;
+
+        String blankSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Blank.png";
+        String goldSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Gold.png";
+
+
+        
 
         public BookSorting()
         {
             InitializeComponent();
-            GenerateCallNumbers();
-            SortCallNumbers();
             FillTiles();
         }
         private void FillTiles()
         {
+
+
+            GenerateCallNumbers();
+            SortCallNumbers();
+
+            order = 0;
             for (int i = 0; i < 10; i++)
             {
                 string number = $"Item{i + 1}";
 
                 Button button = (Button)FindName(number);
 
+                
+
                 if (button != null)
                 {
                     button.Content = UnorderedList[i].CallNumber;
-
-                    button.Click += (sender, e) =>
+                    // Create a reference to the lambda expression
+                    RoutedEventHandler clickHandler = (sender, e) =>
                     {
+                        order++;
                         ButtonClick(button, order);
                     };
+
+                    // Add the event handler to the button
+                    button.Click += clickHandler;
+
+                    // Store the reference to the event handler in the Tag property
+                    button.Tag = clickHandler;
                 }
             }
         }
 
-        private void ResetOptions()
-        { 
+        private void RemoveButtonEvents(Button button)
+        {
+            // Check if the Tag property contains a reference to the event handler
+            if (button.Tag is RoutedEventHandler clickHandler)
+            {
+                // Remove the event handler
+                button.Click -= clickHandler;
+            }
+        }
+
+
+        private void ButtonClick(Object sender, int order)
+        {
+            Button button = (Button)sender;
+            button.IsEnabled = false;
+            
+            string choice = (string)button.Content;
+
+            BookModel b = new() { CallNumber = choice };
+
+            UserList.Add(b);
+
+
+            string DisplayName = "Sort" + order;
+            Label label = (Label)FindName(DisplayName);
+
+            Score.Content = order;
+
+            if (label != null)
+            {
+                label.Visibility = Visibility.Visible;
+                label.Content = choice;
+            }
+        }
+
+        private void Retry_Click(object sender, RoutedEventArgs e)
+        {
+            
             order = 0;
-            InitializeComponent();
-            GenerateCallNumbers();
-            SortCallNumbers();
-            FillTiles();
+            UnorderedList.Clear();
+            OrderedList.Clear();
+            for (int i = 0; i < 10; i++)
+            {
+                string btn = $"Item{i}";
+                Button button = (Button )FindName(btn);
+
+                if (button != null)
+                {
+                    RemoveButtonEvents(button);
+                }
+            }
+
+            FillTiles();      
+
+
+
+
 
             Sort1.Visibility = Visibility.Hidden;
             Sort2.Visibility = Visibility.Hidden;
@@ -85,26 +155,9 @@ namespace BookSoek
             Item8.IsEnabled = true;
             Item9.IsEnabled = true;
             Item10.IsEnabled = true;
+
         }
-        private void ButtonClick(Button button, int i)
-        {
-            button.IsEnabled = false;
-            order++;
-            string choice = (string)button.Content;
 
-            BookModel b = new() { CallNumber = choice };
-
-            UserList.Add(b);
-
-
-            string DisplayName = "Sort" + order;
-            Label label = (Label)FindName(DisplayName);
-
-            if (label != null)
-            {
-                label.Content = choice;
-            }
-        }
 
 
 
@@ -127,6 +180,7 @@ namespace BookSoek
                 UnorderedList.Add(b);
             }
         }
+
 
         //SORTING ALGORITHM FOR SORTING THE NEW LIST INTO AN ALPHABETICAL LIST
         private void SortCallNumbers()
@@ -163,159 +217,62 @@ namespace BookSoek
 
             for (int i = 0; i < 10; i++)
             {
-                if (UserList[i].CallNumber == OrderedList[i].CallNumber)
+                if (UserList[i].CallNumber != OrderedList[i].CallNumber)
+                {
+                    string lbl = $"Sort{i + 1}";
+                    Label label = (Label)FindName(lbl);
+                    SolidColorBrush brush = new SolidColorBrush(Colors.Red);
+
+                    label.Foreground = brush;
+
+
+                }
+                else
                 {
                     score++;
                 }
             }
+            CalculateScore();
             Score.Content = score;
         }
 
-
-        private void Retry_Click(object sender, RoutedEventArgs e)
+        private void CalculateScore()
         {
-            ResetOptions();
+            BitmapImage blank = new BitmapImage( new Uri(blankSource));
+            BitmapImage gold = new BitmapImage( new Uri(goldSource));
+
+            if (score == 10)
+            {
+                star1.Source = gold;
+                star2.Source = gold;
+                star3.Source = gold;
+            }
+            else if (score >= 8 && score < 10)
+            {
+                star1.Source = gold;
+                star2.Source = gold;
+                star3.Source = blank;
+            }
+            else if (score >= 5 && score < 8)
+            {
+                star1.Source = gold;
+                star2.Source = blank;
+                star3.Source = blank;
+            }
+            else
+            {
+                star1.Source = blank;
+                star2.Source = blank;
+                star3.Source = blank;
+            }
 
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
 
 
-
-
-        //private void Item1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item1.IsEnabled = false;
-        //    order++;
-        //    String book = Item1.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);
-
-
-        //    string DisplayName = $"Sort{order}";
-        //    Label label = (Label)FindName(DisplayName);
-
-
-
-        //}
-
-        //private void Item2_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item2.IsEnabled = false;
-        //    order++;
-        //    String book = Item2.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);
-
-
-
-        //}
-
-        //private void Item3_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item3.IsEnabled = false;
-        //    order++;   
-        //    String book = Item3.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);    
-
-
-
-        //}
-
-        //private void Item4_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item4.IsEnabled = false;
-        //    order++;   
-        //    String book = Item4.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);    
-
-
-
-        //}
-
-        //private void Item5_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item5.IsEnabled = false;
-        //    order++;  
-        //    String book = Item5.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);   
-
-
-
-        //}
-
-        //private void Item6_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item6.IsEnabled = false;
-        //    order++;   
-        //    String book = Item6.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);    
-
-
-
-        //}
-
-        //private void Item7_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item7.IsEnabled = false;
-        //    order++;    
-        //    String book = Item7.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);   
-
-
-
-        //}
-
-        //private void Item8_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item8.IsEnabled = false;
-        //    order++;   
-        //    String book = Item8.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);   
-
-
-
-
-        //}
-
-        //private void Item9_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item9.IsEnabled = false;
-        //    order++;   
-        //    String book = Item9.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);   
-
-
-
-        //}
-
-        //private void Item10_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Item10.IsEnabled = false;
-        //    order++;   
-        //    String book = Item10.Content.ToString();
-
-        //    BookModel b = new() { CallNumber = book };
-        //    UserList.Add(b);    
-
-
-
-        //}
 
         //THE ABOVE CODE ADAPTED FROM:
         //AUTHOR: CHAND, M

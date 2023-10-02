@@ -8,7 +8,60 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home">
 
-    <Grid>
-        
+    <Page.Resources>
+        <Style x:Key="RoundButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse x:Name="ellipse" Fill="Transparent" Stroke="Green" StrokeThickness="3"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ellipse" Property="Stroke" Value="White"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+
+    <Grid x:Name="grdMain" Height="420">
+        <Grid x:Name="grdLeft" Width="400" HorizontalAlignment="Left" Background="White">
+            <Grid Height="400" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Label Content="Boek" HorizontalAlignment="Left" Margin="118,80,0,0" VerticalAlignment="Top" FontSize="38" FontWeight="Bold"/>
+                <Label Content="Soek." HorizontalAlignment="Left" Margin="140,115,0,0" VerticalAlignment="Top" FontSize="38" FontWeight="Bold"/>
+                <Label HorizontalAlignment="Center" Margin="0,197,0,0"  VerticalAlignment="Top" FontSize="12" FontWeight="Bold" Height="106" Width="292">
+                    <TextBlock TextWrapping="Wrap" Width="321" Height="118">
+                        An application designed to help you understand the intricacies behind the Dewey Decimal Classification system. There are 3 activities available for you to play to help you practice the skills needed to use this system in your everyday tasks...
+                    </TextBlock>
+                </Label>
+
+
+
+
+
+
+            </Grid>
+        </Grid>
+        <Grid x:Name="grdRight" Width="400" HorizontalAlignment="Left" Background="#FF212529" Margin="400,0,0,0">
+
+
+
+            <Grid Width="400" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <Label Padding="100px">
+                    Insert the paragraph explainging the deweey decimal system here
+                </Label>
+                
+
+
+            </Grid>
+
+        </Grid>
+
     </Grid>
 </Page>
