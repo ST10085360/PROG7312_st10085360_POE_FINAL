@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Reflection.Metadata.BlobBuilder;
+using Label = System.Windows.Controls.Label;
 
 namespace BookSoek
 {
@@ -41,10 +43,11 @@ namespace BookSoek
             InitializeComponent();
             FillTiles();
         }
+
+        //METHOD THAT FILLS ALL THE BUTTONS WITH CALL NUMBERS FROM THE GENERATED LIST
+        //ALSO DYNAMICALLY ADDS ON CLICK EVENTS THAT HANDLE THE RE-ARRANGE FUNCTIONALITY
         private void FillTiles()
         {
-
-
             GenerateCallNumbers();
             SortCallNumbers();
 
@@ -60,33 +63,29 @@ namespace BookSoek
                 if (button != null)
                 {
                     button.Content = UnorderedList[i].CallNumber;
-                    // Create a reference to the lambda expression
+
                     RoutedEventHandler clickHandler = (sender, e) =>
                     {
                         order++;
                         ButtonClick(button, order);
                     };
 
-                    // Add the event handler to the button
                     button.Click += clickHandler;
-
-                    // Store the reference to the event handler in the Tag property
                     button.Tag = clickHandler;
                 }
             }
         }
 
+        //CHECKS THE BUTTON TAG FOR AN EXISTING EVENT
         private void RemoveButtonEvents(Button button)
         {
-            // Check if the Tag property contains a reference to the event handler
             if (button.Tag is RoutedEventHandler clickHandler)
             {
-                // Remove the event handler
                 button.Click -= clickHandler;
             }
         }
 
-
+        //CODE THAT RE-ARRANGES THE CALL NUMBERS. CALLED BY THE BUTTON CLICK EVENT HANDLER
         private void ButtonClick(Object sender, int order)
         {
             Button button = (Button)sender;
@@ -102,7 +101,6 @@ namespace BookSoek
             string DisplayName = "Sort" + order;
             Label label = (Label)FindName(DisplayName);
 
-            Score.Content = order;
 
             if (label != null)
             {
@@ -111,28 +109,27 @@ namespace BookSoek
             }
         }
 
+        //RESETS THE USER CHOICES, RE-GENERATES THE CALL NUMBER LIST, RESETS SCORE
         private void Retry_Click(object sender, RoutedEventArgs e)
         {
             
             order = 0;
             UnorderedList.Clear();
             OrderedList.Clear();
+            UserList.Clear();
             for (int i = 0; i < 10; i++)
             {
-                string btn = $"Item{i}";
+                string btn = $"Item{i+1}";
                 Button button = (Button )FindName(btn);
 
+                
                 if (button != null)
                 {
+                    button.IsEnabled = true;
                     RemoveButtonEvents(button);
                 }
             }
-
-            FillTiles();      
-
-
-
-
+            FillTiles();
 
             Sort1.Visibility = Visibility.Hidden;
             Sort2.Visibility = Visibility.Hidden;
@@ -145,22 +142,28 @@ namespace BookSoek
             Sort9.Visibility = Visibility.Hidden;
             Sort10.Visibility = Visibility.Hidden;
 
-            Item1.IsEnabled = true;
-            Item2.IsEnabled = true;
-            Item3.IsEnabled = true;
-            Item4.IsEnabled = true;
-            Item5.IsEnabled = true;
-            Item6.IsEnabled = true;
-            Item7.IsEnabled = true;
-            Item8.IsEnabled = true;
-            Item9.IsEnabled = true;
-            Item10.IsEnabled = true;
+            SolidColorBrush brush = new SolidColorBrush(Colors.White);
+
+            Sort1.Foreground = brush;
+            Sort2.Foreground = brush;
+            Sort3.Foreground = brush;
+            Sort4.Foreground = brush;
+            Sort5.Foreground = brush;
+            Sort6.Foreground = brush;
+            Sort7.Foreground = brush;
+            Sort8.Foreground = brush;
+            Sort9.Foreground = brush;
+            Sort10.Foreground = brush;
+
+            star1.Visibility = Visibility.Hidden;
+            star2.Visibility = Visibility.Hidden;
+            star3.Visibility = Visibility.Hidden;
 
         }
 
 
 
-
+        //METHOD THAT GENERATES RANDOM CALL NUMBERS
         private void GenerateCallNumbers()
         {
             string[] existingSurnames = { "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor" };
@@ -224,8 +227,6 @@ namespace BookSoek
                     SolidColorBrush brush = new SolidColorBrush(Colors.Red);
 
                     label.Foreground = brush;
-
-
                 }
                 else
                 {
@@ -236,8 +237,20 @@ namespace BookSoek
             Score.Content = score;
         }
 
+        //THE ABOVE CODE ADAPTED FROM:
+        //AUTHOR: CHAND, M
+        //WEB PAGE: SUBSTRING IN C#
+        //WEBSITE : C# CORNER
+        //URL: https://www.c-sharpcorner.com/UploadFile/mahesh/substring-in-C-Sharp/
+        //DATE: 24/04/2023
+
+
+        //THIS METHODS GETS THE USERS SCORE AND CALCULATES THEIR RESULT.
         private void CalculateScore()
         {
+            star1.Visibility = Visibility.Visible;
+            star2.Visibility = Visibility.Visible;
+            star3.Visibility = Visibility.Visible;
             BitmapImage blank = new BitmapImage( new Uri(blankSource));
             BitmapImage gold = new BitmapImage( new Uri(goldSource));
 
@@ -273,13 +286,6 @@ namespace BookSoek
         }
 
 
-
-        //THE ABOVE CODE ADAPTED FROM:
-        //AUTHOR: CHAND, M
-        //WEB PAGE: SUBSTRING IN C#
-        //WEBSITE : C# CORNER
-        //URL: https://www.c-sharpcorner.com/UploadFile/mahesh/substring-in-C-Sharp/
-        //DATE: 24/04/2023
 
 
     }

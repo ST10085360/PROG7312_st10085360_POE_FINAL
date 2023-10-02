@@ -28,21 +28,20 @@
             </Setter>
         </Style>
     </Page.Resources>
-    
+
 
     <Grid x:Name="grdMain" Height="420">
         <Grid x:Name="grdLeft" Width="250" HorizontalAlignment="Left" Background="White">
-            <Grid Height="250" VerticalAlignment="Top" Margin="0,0,0,0">
+            <Grid Height="379" VerticalAlignment="Top">
                 <Label Content="Boek" HorizontalAlignment="Left" Margin="38,80,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
                 <Label Content="Sorting." HorizontalAlignment="Left" Margin="58,115,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
-                <Label Content="Description for this page" HorizontalAlignment="Left" Margin="38,157,0,0" VerticalAlignment="Top" FontSize="12" FontWeight="Bold"/>
-
+                <Label HorizontalAlignment="Left" Margin="30,177,0,85" FontSize="10" FontWeight="Bold" Width="205">
+                    <TextBlock TextWrapping="Wrap" Width="200" Height="120">
+                This activity allows you to practise sorting call numbers according their numeric values, and alphabetic values. To begin, simply select each call number in the order that they should appear on the shelf. Your selections will appear on the right of the list. When you are finished click confirm...
+                    </TextBlock>
+                </Label>
             </Grid>
-            <Grid Height="150" VerticalAlignment="Bottom">
 
-
-            </Grid>
-            
         </Grid>
         <Grid x:Name="grdRight" Width="550" HorizontalAlignment="Left" Background="#FF212529" Margin="250,0,0,0">
 
@@ -78,7 +77,7 @@
                     <Button x:Name="Confirm" Content="Confirm" Foreground="Green" Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="40,0,0,0" Click="Confirm_Click"/>
                     <Button x:Name="Retry" Content="Retry" Foreground="Green"  Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="140,0,0,0" Click="Retry_Click"/>
                 </Grid>
-                
+
                 <Grid  Height="200" VerticalAlignment="Top" Margin="0,200,0,0">
                     <Grid Height="35" VerticalAlignment="Top" Margin="0,0,0,0">
                         <Label Content="Results" FontSize="23" Foreground="White" HorizontalAlignment="Center" />
@@ -101,7 +100,7 @@
                         </Grid>
                     </Grid>
                 </Grid>
-                    
+
             </Grid>
 
         </Grid>

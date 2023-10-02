@@ -9,6 +9,6 @@
       Title="BookSearch">
 
     <Grid>
-        
+        <Label Content="Game coming soon!"/>
     </Grid>
 </Page>

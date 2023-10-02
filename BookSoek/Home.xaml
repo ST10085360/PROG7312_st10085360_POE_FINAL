@@ -53,8 +53,9 @@
 
 
             <Grid Width="400" HorizontalAlignment="Left" Margin="0,0,0,0">
-                <Label Padding="100px">
-                    Insert the paragraph explainging the deweey decimal system here
+                <Label HorizontalAlignment="Center" Margin="0,100,0,0"  VerticalAlignment="Top" FontSize="13" FontWeight="Bold" Height="300" Width="292">
+                    <TextBlock TextWrapping="Wrap" Width="321" Height="300" Foreground="White">
+The Dewey Decimal System is a widely used library classification system that organizes books and other materials on library shelves. Invented by Melvil Dewey in the late 19th century, it assigns each item a unique numerical code, typically consisting of three digits, followed by a decimal point and further digits for more specific categorization. The system is hierarchical, with the first digits representing broad subject categories and the additional digits providing increasingly precise subcategories. This systematic approach makes it easier for library patrons to locate books based on subject matter, promoting efficient organization and retrieval of information within libraries worldwide.                    </TextBlock>
                 </Label>
                 
 

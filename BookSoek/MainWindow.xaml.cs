@@ -38,12 +38,12 @@ namespace BookSoek
 
         private void btnArea_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Home());
+            MainFrame.Navigate(new AreaSearch());
         }
 
         private void btnTree_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Home());
+            MainFrame.Navigate(new BookSearch());
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800" WindowStyle="None">
     <Grid>
         <!-- Top Bar with Navigation Buttons -->
-        <Grid Background="LightGray" Height="50px" Width="NaN" Grid.ColumnSpan="2" VerticalAlignment="Top">
+        <Grid Background="LightGray" Height="40px" Width="NaN" Grid.ColumnSpan="2" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -23,10 +23,10 @@
             </StackPanel>
 
             <!-- Exit Button -->
-            <Button x:Name="ExitButton" Grid.Column="1" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ExitButton_Click" Margin="779,0,0,0"/>
+            <Button x:Name="ExitButton" Grid.Column="1" Content="X" HorizontalAlignment="Left" Width="20px"  VerticalAlignment="Center" Click="ExitButton_Click" Margin="749,0,0,0"/>
         </Grid>
 
         <!-- Content Area for Pages -->
-        <Frame Name="MainFrame" Height="400" Margin="0,50,0,0" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
+        <Frame Name="MainFrame" Height="415" Margin="0,35,0,0" Grid.ColumnSpan="2" VerticalAlignment="Top" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
