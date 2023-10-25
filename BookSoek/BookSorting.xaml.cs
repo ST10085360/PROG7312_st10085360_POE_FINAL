@@ -32,6 +32,8 @@ namespace BookSoek
 
         public int score = 0;
 
+
+
         String blankSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Blank.png";
         String goldSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Gold.png";
 

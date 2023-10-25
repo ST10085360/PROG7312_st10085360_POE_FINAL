@@ -31,7 +31,7 @@
 
     <Grid x:Name="grdMain" Height="420">
         <Grid x:Name="grdLeft" Width="250" HorizontalAlignment="Left" Background="White">
-            <Grid Height="379" VerticalAlignment="Top">
+            <Grid Height="420" VerticalAlignment="Center">
                 <Label Content="Area" HorizontalAlignment="Left" Margin="38,80,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
                 <Label Content="Searching." HorizontalAlignment="Left" Margin="58,115,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
                 <Label HorizontalAlignment="Left" Margin="30,177,0,85" FontSize="10" FontWeight="Bold" Width="205">
@@ -39,32 +39,51 @@
                 This activity allows you to practise matching call numbers with thei respective descriptions. You need to select the number on the left and the click the correct description on the right. When you are finished click confirm...
                     </TextBlock>
                 </Label>
+                <Label Content="Difficulty" HorizontalAlignment="Center" Margin="0,317,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
             </Grid>
+            <RadioButton x:Name="rbEasy" Content="Easy" HorizontalAlignment="Left" Margin="96,357,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="0.5,0.5" Width="64">
+                
+            </RadioButton>
+            <RadioButton x:Name="rbHard" Content="Hard" HorizontalAlignment="Left" Margin="96,376,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="0.5,0.5" Width="64">
+                
+            </RadioButton>
 
         </Grid>
         <Grid x:Name="grdRight" Width="550" HorizontalAlignment="Left" Background="#FF212529" Margin="250,0,0,0">
 
-            <Grid Width="150" HorizontalAlignment="Left" Margin="0,0,0,0">
-                <Button x:Name="Item1" Content="x" HorizontalAlignment="Left" Margin="26,40,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
-                <Button x:Name="Item2" Content="x" HorizontalAlignment="Left" Margin="26,75,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
-                <Button x:Name="Item3" Content="x" HorizontalAlignment="Left" Margin="26,110,0,0" VerticalAlignment="Top" Width="100" Height="25" />
-                <Button x:Name="Item4" Content="x" HorizontalAlignment="Left" Margin="26,145,0,0" VerticalAlignment="Top" Width="100" Height="25" />
+            <Grid Width="150" HorizontalAlignment="Left" Margin="0,0,0,126">
+                <Button x:Name="LEFT1" Content="x" HorizontalAlignment="Left" Margin="26,40,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
+                <Button x:Name="LEFT2" Content="x" HorizontalAlignment="Left" Margin="26,75,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
+                <Button x:Name="LEFT3" Content="x" HorizontalAlignment="Left" Margin="26,110,0,0" VerticalAlignment="Top" Width="100" Height="25" />
+                <Button x:Name="LEFT4" Content="x" HorizontalAlignment="Left" Margin="26,145,0,0" VerticalAlignment="Top" Width="100" Height="25" />
 
             </Grid>
-            <Grid Width="150" HorizontalAlignment="Left" Margin="150,0,0,0" >
-                <Button x:Name="Description1" Content="x" HorizontalAlignment="Left" Margin="26,40,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
-                <Button x:Name="Description2" Content="x" HorizontalAlignment="Left" Margin="26,75,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
-                <Button x:Name="Description3" Content="x" HorizontalAlignment="Left" Margin="26,110,0,0" VerticalAlignment="Top" Width="100" Height="25" />
-                <Button x:Name="Description4" Content="x" HorizontalAlignment="Left" Margin="26,145,0,0" VerticalAlignment="Top" Width="100" Height="25" />
-                <Button x:Name="Description5" Content="x" HorizontalAlignment="Left" Margin="26,180,0,0" VerticalAlignment="Top" Width="100" Height="25" />
-                <Button x:Name="Description6" Content="x" HorizontalAlignment="Left" Margin="26,215,0,0" VerticalAlignment="Top" Width="100" Height="25" />
-                <Button x:Name="Description7" Content="x" HorizontalAlignment="Left" Margin="26,250,0,0" VerticalAlignment="Top" Width="100" Height="25" />
+            <Grid Width="150" HorizontalAlignment="Left" Margin="150,0,0,126" >
+                <Button x:Name="RIGHT1" Content="x" HorizontalAlignment="Left" Margin="26,40,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
+                <Button x:Name="RIGHT2" Content="x" HorizontalAlignment="Left" Margin="26,75,0,0" VerticalAlignment="Top" Width="100" Height="25"  />
+                <Button x:Name="RIGHT3" Content="x" HorizontalAlignment="Left" Margin="26,110,0,0" VerticalAlignment="Top" Width="100" Height="25" />
+                <Button x:Name="RIGHT4" Content="x" HorizontalAlignment="Left" Margin="26,145,0,0" VerticalAlignment="Top" Width="100" Height="25" />
+                <Button x:Name="RIGHT5" Content="x" HorizontalAlignment="Left" Margin="26,180,0,0" VerticalAlignment="Top" Width="100" Height="25" />
+                <Button x:Name="RIGHT6" Content="x" HorizontalAlignment="Left" Margin="26,215,0,0" VerticalAlignment="Top" Width="100" Height="25" />
+                <Button x:Name="RIGHT7" Content="x" HorizontalAlignment="Left" Margin="26,250,0,0" VerticalAlignment="Top" Width="100" Height="25" />
 
+            </Grid>
+
+            <Grid Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="126">
+                <Label Content="Match 1:" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="8,0,0,100" />
+                <Label Content="Match 2:" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="8,24,0,71" />
+                <Label Content="Match 3:" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="8,52,0,48" />
+                <Label Content="Match 4:" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="8,76,0,24" />
+
+                <Label x:Name="match1" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,0,0,100" />
+                <Label x:Name="match2" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,26,0,69" />
+                <Label x:Name="match3" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,52,0,48" />
+                <Label x:Name="match4" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,76,0,24" />
             </Grid>
             <Grid Width="250" HorizontalAlignment="Left" Margin="300,0,0,0">
                 <Grid Height="200" VerticalAlignment="Top" Margin="0,0,0,0">
-                    <Button x:Name="Confirm" Content="Confirm" Foreground="Green" Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="40,0,0,0" Click="Confirm_Click"/>
-                    <Button x:Name="Retry" Content="Retry" Foreground="Green"  Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="140,0,0,0" Click="Retry_Click"/>
+                    <Button x:Name="Confirm" Content="Confirm" Foreground="Green" Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="40,0,0,0" />
+                    <Button x:Name="Retry" Content="Retry" Foreground="Green"  Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="140,0,0,0" />
                 </Grid>
 
                 <Grid  Height="200" VerticalAlignment="Top" Margin="0,200,0,0">
