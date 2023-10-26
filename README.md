@@ -1,5 +1,5 @@
 # PROG7312_st10085360_POE
-# BoekSoek
+# BoekSoek V2
 
 [This is a simple book sorting application developed in C# using  WPF. The application allows users to practice sorting books based on call numbers. It's designed to showcase various programming concepts and techniques.]
 
@@ -12,12 +12,20 @@
 - [License](#license)
 
 ## Features
-
+VERSION 1.0
 - Randomly generates call numbers for practice.
 - Provides a user interface with buttons for sorting books.
 - Allows users to reset their choices and restart the sorting process.
 - Calculates and displays the user's score based on the correct sorting order.
 - Utilizes sorting algorithms and LINQ for sorting book call numbers.
+- Features a responsive graphical user interface (GUI) for user interaction.
+
+VERSION 2.0
+- Introduces a match the column game for searching an area
+- Allows the user to select between easy and hard difficulty levels
+- Provides buttons for the user to match columns
+- Checks the answers by referencing a dictionary
+- Calculates the user's score based on the correct matches
 - Features a responsive graphical user interface (GUI) for user interaction.
 
 ## Prerequisites
@@ -39,9 +47,7 @@ git clone https://github.com/yourusername/book-sorting-app.git
 
 ## Usage
 - Launch the application.
-- Click on the buttons to sort books based on their call numbers.
-- Use the "Restart" button to reset your choices and restart the sorting process.
-- Click the "Confirm" button to check your score.
+- Select between the first two activities in the nav bar to begin
 
 ## Contributing
 
