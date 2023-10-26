@@ -41,11 +41,11 @@
                 </Label>
                 <Label Content="Difficulty" HorizontalAlignment="Center" Margin="0,317,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
             </Grid>
-            <RadioButton x:Name="rbEasy" Content="Easy" HorizontalAlignment="Left" Margin="96,357,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="0.5,0.5" Width="64">
-                
+            <RadioButton x:Name="rbEasy" Content="Easy" HorizontalAlignment="Left" Margin="96,357,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="0.5,0.5" Width="64" Checked="rbEasy_Checked">
+
             </RadioButton>
-            <RadioButton x:Name="rbHard" Content="Hard" HorizontalAlignment="Left" Margin="96,376,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="0.5,0.5" Width="64">
-                
+            <RadioButton x:Name="rbHard" Content="Hard" HorizontalAlignment="Left" Margin="96,376,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="0.5,0.5" Width="64" Checked="rbHard_Checked">
+
             </RadioButton>
 
         </Grid>
@@ -75,15 +75,16 @@
                 <Label Content="Match 3:" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="8,52,0,48" />
                 <Label Content="Match 4:" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="8,76,0,24" />
 
-                <Label x:Name="match1" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,0,0,100" />
-                <Label x:Name="match2" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,26,0,69" />
-                <Label x:Name="match3" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,52,0,48" />
-                <Label x:Name="match4" Content="" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="94,76,0,24" />
+                <Label x:Name="match0" Content="gygqhblk" FontSize="12" Foreground="White" HorizontalAlignment="Left" Margin="94,0,0,100" />
+                <Label x:Name="match1" Content="gygqhblk" FontSize="12" Foreground="White" HorizontalAlignment="Left" Margin="94,26,0,69" />
+                <Label x:Name="match2" Content="gygqhblk" FontSize="12" Foreground="White" HorizontalAlignment="Left" Margin="94,52,0,48" />
+                <Label x:Name="match3" Content="gygqhblk" FontSize="12" Foreground="White" HorizontalAlignment="Left" Margin="94,76,0,24" />
             </Grid>
             <Grid Width="250" HorizontalAlignment="Left" Margin="300,0,0,0">
                 <Grid Height="200" VerticalAlignment="Top" Margin="0,0,0,0">
-                    <Button x:Name="Confirm" Content="Confirm" Foreground="Green" Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="40,0,0,0" />
-                    <Button x:Name="Retry" Content="Retry" Foreground="Green"  Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="140,0,0,0" />
+                    <Button x:Name="Confirm" Content="Confirm" FontSize="10" Foreground="Green" Style="{StaticResource RoundButton}" Width="50" Height="50" HorizontalAlignment="Left" Margin="35,100,0,50" Click="Confirm_Click" />
+                    <Button x:Name="Retry" Content="Retry" FontSize="10" Foreground="Green"  Style="{StaticResource RoundButton}" Width="50" Height="50" HorizontalAlignment="Center" Margin="0,100,0,50" Click="Retry_Click" />
+                    <Button x:Name="New" Content="New" FontSize="10" Foreground="Green"  Style="{StaticResource RoundButton}" Width="50" Height="50" HorizontalAlignment="Left" Margin="166,100,0,50" Click="New_Click" />
                 </Grid>
 
                 <Grid  Height="200" VerticalAlignment="Top" Margin="0,200,0,0">

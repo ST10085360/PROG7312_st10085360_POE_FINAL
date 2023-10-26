@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +21,12 @@ namespace BookSoek
     /// </summary>
     /// 
 
-    
+
     public partial class AreaSearch : Page
     {
+
+        #region VARIABLES
+
         //DEFINED TO ALLOW USER TO PRACTISE MATCHING THE LOWER LEVEL CALL NUMBERS
         private static Dictionary<string, string> lowerLevel = new Dictionary<string, string>()
         {
@@ -142,6 +146,8 @@ namespace BookSoek
             {"900", "History"}
         };
 
+        //THIS DICTIONARY IS USED IN THE ACTUAL GAMEPLAY OF THE PROGRAM, IT GETS FILLED DYNAMICALLY BASED ON 
+        //THE CURRENT GAMEMODE AND DIFFICULTY LEVEL
         private static Dictionary<string, string> inplay = new Dictionary<string, string>();
 
         public int score = 0;
@@ -150,11 +156,14 @@ namespace BookSoek
         //EVEN NUMBER: MATCH CALL NUMBERS TO DESCRIPTIONS
         //ODD NUMBER: MATCH DESCRIPTIONS TO CALL NUMBER
         //THIS NUMBER WILL BE INCREMENTED AFTER EVERY GAME, ALLOWING FOR A FOOL PROOF SWITCH BETWEEN GAMEMODES
-        int gamemode = 1;
+        private static int gamemode = 0;
 
-        String blankSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Blank.png";
-        String goldSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Gold.png";
+        String blankSource = @"D:\UNI\SEMESTER2\PROG\POE\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Blank.png";
+        String goldSource = @"D:\UNI\SEMESTER2\PROG\POE\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Gold.png";
 
+
+        //THESE LISTS ARE USED TO GENERATE A MATCH THE COLUMN GAME BASED OFF OF RANDOMLY SELECTED 
+        //CALL NUMBERS AND DESCRIPTIONS FROM THE LOWER AND GIHER LEVEL DICTIONARIES
         public List<String> GameNumbers = new List<String>();
         public List<BookModel> FullCallNumbers = new List<BookModel>();
         public List<MatchModel> Descriptions = new List<MatchModel>();
@@ -163,6 +172,10 @@ namespace BookSoek
         public SolidColorBrush brush;
         public String[] colours = { "Green", "Blue", "Red", "Pink" };
 
+
+
+        //THESE 2 LISTS HANDLE THE CHOICES ON THE LEEFT THAT HAVE ALREADY BEEN CLICKED
+        //THOSE BUTTONS ARE DISABLED SO THAT THE USER HAS TO PICK A NEW ONE
         public List<String> ChosenLeftOptions = new List<String>();
         public List<String> AvailableLeftOptions = new List<String>
         {
@@ -174,26 +187,35 @@ namespace BookSoek
 
         static Random random = new Random();
 
+        public int index = 0;
+        public String number;
+        public String desc;
+
+        //CLICK COUNT CHECKS IF THE USER HAS MADE THE MAXIMUM AMOUNT OF MATCHES
+        //AND THEN DISABLES THE REMAINING BUTTONS
+        public int clickCount = 1;
+
+        #endregion
+
         public AreaSearch()
         {
             InitializeComponent();
-            rbEasy.IsEnabled = true;
-            rbEasy.IsChecked = false;
-            rbHard.IsEnabled = true;
-            rbHard.IsChecked = true;
+            rbEasy.IsChecked = true;
+            rbHard.IsChecked = false;
             SelectDifficulty();
-            FillTiles();
+            generateOptions();
 
         }
 
+
+
+        #region LOGIC FOR ADDING ON-CLICK EVENTS TO THE BUTTONS
 
         //METHOD THAT FILLS ALL THE BUTTONS WITH CALL NUMBERS FROM THE GENERATED LIST
         //ALSO DYNAMICALLY ADDS ON CLICK EVENTS THAT HANDLE THE RE-ARRANGE FUNCTIONALITY
         private void FillTiles()
         {
-            generateOptions();
-
-            if (gamemode % 2 == 0) 
+            if (gamemode % 2 == 0)
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -222,8 +244,6 @@ namespace BookSoek
                     string RIGHT = $"RIGHT{i + 1}";
 
                     Button button = (Button)FindName(RIGHT);
-
-
 
                     if (button != null)
                     {
@@ -289,24 +309,13 @@ namespace BookSoek
 
             }
 
-            
 
 
 
-        }
 
-        //CHECKS THE BUTTON TAG FOR AN EXISTING EVENT
-        private void RemoveButtonEvents(Button button)
-        {
-            if (button.Tag is RoutedEventHandler clickHandler)
-            {
-                button.Click -= clickHandler;
-            }
-        }
+        }       
 
-        public int index = 0;
-        public String number;
-        public String desc;
+        //EVENT HANDLER FOR THE BUTTONS ON THE LEFT
         private void LeftButtonClick(Object sender)
         {
             rbEasy.IsEnabled = false;
@@ -327,9 +336,9 @@ namespace BookSoek
 
                 button.Foreground = brush;
 
-                index++;
-
                 number = GetNumber(button.Content.ToString());
+                return;
+
             }
             else
             {
@@ -346,15 +355,28 @@ namespace BookSoek
 
                 button.Foreground = brush;
 
-                index++;
-
                 desc = button.Content.ToString();
+                return;
+
             }
 
         }
 
+        //EVENT HANDLER FOR THE BUTTONS ON THE RIGHT
         private void RightButtonClick(Object sender)
         {
+            if (clickCount == 4)
+            {
+                RIGHT1.IsEnabled = false;
+                RIGHT2.IsEnabled = false;
+                RIGHT3.IsEnabled = false;
+                RIGHT4.IsEnabled = false;
+                RIGHT5.IsEnabled = false;
+                RIGHT6.IsEnabled = false;
+                RIGHT7.IsEnabled = false;
+            }
+            clickCount++;
+
 
             if (gamemode % 2 == 0)
             {
@@ -365,17 +387,20 @@ namespace BookSoek
 
                 UserChoices.Add(new MatchModel { key = number, description = desc });
 
-                String lbl = "match" + index;
+                string lbl = $"match{index}";
 
                 Label label = (Label)FindName(lbl);
 
-                label.Content = number + " " + desc; 
+                label.Content = number + " " + desc;
+                index++;
 
                 foreach (var item in AvailableLeftOptions)
                 {
                     button = (Button)FindName(item);
                     button.IsEnabled = true;
                 }
+
+                return;
 
             }
             else
@@ -392,27 +417,33 @@ namespace BookSoek
                 Label label = (Label)FindName(lbl);
 
                 label.Content = number + " " + desc;
+                index++;
 
                 foreach (var item in AvailableLeftOptions)
                 {
                     button = (Button)FindName(item);
                     button.IsEnabled = true;
                 }
-            }       
+
+            }
+
+
+
+
 
         }
 
-
-        private string GetNumber(String callnumber)
-        {
-            string[] sections = callnumber.Split(' ');
-            string numeric = sections[0];
-            string Numeric = numeric.Split('.')[0];
-
-            return (Numeric);
-        }
+        #endregion
 
 
+
+        #region LOGIC FOR FILLING LISTS WITH CALL NUMBERS AND DESCRIPTIONS
+
+        //REFERENCE #2 WAS USED FOR FURTHER INSIGHT INTO HOW DICTIONARIES WORK
+
+        //THIS METHOD FILLS THEE GAME AND DESCRIPTION LISTS WITH RANDOM CALL NUMBERS
+        //AND THEIR RESPECTIVE DESCRIPTIONS, AS WELL AS AN EXTRA 3 OF EITHER
+        //DEPENDING ON THE GAMEMODE
         private void generateOptions()
         {
             if (gamemode % 2 == 0)
@@ -449,9 +480,9 @@ namespace BookSoek
                 //CALLING THIS METHOD TO TAKE THE GAME NUMBERS AND CREATE
                 //PROPER CALL NUMBERS THAT WILL BE DISPLAYED TO THE USER
                 GenerateCallNumbers();
-
-
                 Shuffle(Descriptions);
+                return;
+
             }
             else
             {
@@ -481,36 +512,10 @@ namespace BookSoek
                 //CALLING THIS METHOD TO TAKE THE GAME NUMBERS AND CREATE
                 //PROPER CALL NUMBERS THAT WILL BE DISPLAYED TO THE USER
                 GenerateCallNumbers();
-
-
                 Shuffle(Descriptions);
-
-            }
- 
-            
-
-            
+                return;
 
 
-        }
-
-        private void SelectDifficulty()
-        {
-            if (rbEasy.IsChecked == true)
-            {
-                inplay.Clear();
-                foreach (var item in higherLevel)
-                {
-                    inplay.Add(item.Key, item.Value);
-                }
-            }
-            else if (rbHard.IsChecked == true)
-            {
-                inplay.Clear();
-                foreach (var item in lowerLevel)
-                {
-                    inplay.Add(item.Key, item.Value);
-                }
             }
         }
 
@@ -535,6 +540,15 @@ namespace BookSoek
             }
         }
 
+        //THIS METHOD EXTRACTS THE TOP LEVEL DIGITS OF THE CALL NUMBERS
+        private string GetNumber(String callnumber)
+        {
+            string[] sections = callnumber.Split(' ');
+            string numeric = sections[0];
+            string Numeric = numeric.Split('.')[0];
+
+            return (Numeric);
+        }
 
         //THIS IS THE FISHER _YATES ALGORITHM
         //IT WAS NAMED AFTER RONALD FISHER AND FRANK YATES
@@ -552,10 +566,318 @@ namespace BookSoek
             }
         }
 
-    
+        #endregion
 
+
+
+        #region LOGIC FOR SELECTING THE USERS FAVOURED DIFFICULTY
+
+        //SWITCHES DIFFICULTY TO HARD 
+        private void rbHard_Checked(object sender, RoutedEventArgs e)
+        {
+            rbEasy.IsChecked = false;
+
+            inplay.Clear();
+            SelectDifficulty();
+            generateOptions();
+
+            ResetGame();
+
+        }
+
+        //SWITCHES THE DIFFICULTY TO EASY
+        private void rbEasy_Checked(object sender, RoutedEventArgs e)
+        {
+            rbHard.IsChecked = false;
+
+            inplay.Clear();
+            SelectDifficulty();
+            generateOptions() ;
+
+            ResetGame();
+
+        }
+
+        //THIS METHOD FILLS THE PLAYING DICTIONARY WITH THE HIGHER OR LOWER LEVEL CALL NUMBERS AND
+        //DESCRIPTIONS BASED ON THE USERS CHOICE OF DIFFICULTY
+        private void SelectDifficulty()
+        {
+            FullCallNumbers.Clear();
+            GameNumbers.Clear();
+            Descriptions.Clear();
+            UserChoices.Clear();
+
+            index = 0;
+
+            if (rbEasy.IsChecked == true)
+            {
+                inplay.Clear();
+                foreach (var item in higherLevel)
+                {
+                    inplay.Add(item.Key, item.Value);
+                }
+                return;
+            }
+            else if (rbHard.IsChecked == true)
+            {
+                inplay.Clear();
+                foreach (var item in lowerLevel)
+                {
+                    inplay.Add(item.Key, item.Value);
+                }
+                return;
+            }
+        }
+
+        #endregion
+
+
+
+        #region ON-CLICK EVENTS THAT HANDLE THE FLOW OF THE GAMES
+
+        //ALLOWS THE USER TO CONFIRM THEIR CHOICE OF MATCHES AND RETURNS THEIR SCORE
+        private void Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            if (clickCount == 5) 
+            { 
+                int level = 0;
+                int score = 0;
+                foreach (var item in UserChoices)
+                {
+                    string lbl = $"match{level}";
+                    level++;
+                    if (higherLevel.ContainsKey(item.key) && higherLevel[item.key] == item.description)
+                    {
+                        score++;
+                    }
+                    else
+                    {
+                        Label label = (Label)FindName(lbl);
+                        HighlightIncorrectMatch(label);
+                    }
+                }
+
+                CalculateScore();
+                Score.Content = score;
+
+                rbEasy.IsEnabled = true;
+                rbHard.IsEnabled = true;   
+            }
+            else
+            {
+            MessageBox.Show("Please complete all the matches.", "Wag n bietjie!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
+        }
+
+        //CALCULATES THE AMOUNT OF STARS THAT WILL BE AWARED TO THE USER
+        private void CalculateScore()
+        {
+            star1.Visibility = Visibility.Visible;
+            star2.Visibility = Visibility.Visible;
+            star3.Visibility = Visibility.Visible;
+            BitmapImage blank = new BitmapImage(new Uri(blankSource));
+            BitmapImage gold = new BitmapImage(new Uri(goldSource));
+
+            if (score == 4)
+            {
+                star1.Source = gold;
+                star2.Source = gold;
+                star3.Source = gold;
+            }
+            else if (score == 3)
+            {
+                star1.Source = gold;
+                star2.Source = gold;
+                star3.Source = blank;
+            }
+            else if (score >= 1 && score < 3)
+            {
+                star1.Source = gold;
+                star2.Source = blank;
+                star3.Source = blank;
+            }
+            else
+            {
+                star1.Source = blank;
+                star2.Source = blank;
+                star3.Source = blank;
+            }
+        }
+
+        //ALLOWS THE USER TO RESET THEIR CHOICE OF MATCHES AND TRY AGAIN
+        private void Retry_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGame();
+        }
+
+        //RESETS THE CURRENT GAME
+        private void ResetGame()
+        {
+            //RESET THE SELECTED BUTTONS FOR A NEW GAME
+            ChosenLeftOptions.Clear();
+            String[] range = { "LEFT1", "LEFT2", "LEFT3", "LEFT4" };
+            AvailableLeftOptions.AddRange(range);
+
+
+            clickCount = 1;    
+
+            //RESET CURRENT BUTTON INDEX
+            index = 0;
+
+            //CLEAR USER SELECTED MATCHES
+            UserChoices.Clear();
+
+            ResetLeftButtons();
+            ResetRightButtons();
+            ResetMatchLabels();
+
+            rbEasy.IsEnabled = true;
+            rbHard.IsEnabled = true;
+
+            star1.Visibility = Visibility.Hidden;
+            star2.Visibility = Visibility.Hidden;
+            star3.Visibility = Visibility.Hidden;
+
+            Score.Content = "";
+
+            FillTiles();
+        }
+
+
+
+        //ALLOWS THE USER TO START A BRAND NEW GAME. THE CHOSEN DIFFICULTY LEVEL WILL
+        //REMAIN CONSISTENT UNTIL THE USER DECIDES TO CHANGE IT
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            //RESET THE SELECTED BUTTONS FOR A NEW GAME
+            ChosenLeftOptions.Clear();
+            String[] range = { "LEFT1", "LEFT2", "LEFT3", "LEFT4" };
+            AvailableLeftOptions.AddRange(range);
+
+
+            clickCount = 1;
+
+            //RESET CURRENT BUTTON INDEX
+            index = 0;
+
+            //CLEAR USER SELECTED MATCHES
+            UserChoices.Clear();
+
+            FullCallNumbers.Clear();
+            Descriptions.Clear();
+            GameNumbers.Clear();
+
+            ResetLeftButtons();
+            ResetRightButtons();
+            ResetMatchLabels();
+
+            rbEasy.IsEnabled = true;
+            rbHard.IsEnabled = true;
+
+            star1.Visibility = Visibility.Hidden;
+            star2.Visibility = Visibility.Hidden;
+            star3.Visibility = Visibility.Hidden;
+
+            Score.Content = "";
+
+            generateOptions();
+            FillTiles();
+        }
+
+        #endregion
+
+
+
+        #region METHODS THAT HANDLE UI CHANGES
+
+        //THESE METHODS ARE PURELY USED FOR CODE CLEANUP, 
+        //UPDATING THE VISUALS OF LABELS OR BUTTONS IN BETWEEN
+        //ALL THE METHODS AND IMPORTANT APPLICATION LOGIC MAKES 
+        //IT MORE DIFFICULT AND TIME CONSUMING WHEN SEARCHING FOR BUGS
+
+
+        private void ResetMatchLabels()
+        {
+            match0.Content = "";
+            match1.Content = "";
+            match2.Content = "";
+            match3.Content = "";
+
+            match0.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFFFF"));
+            match1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFFFF"));
+            match2.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFFFF"));
+            match3.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFFFF"));
+        }
+
+        private void HighlightIncorrectMatch(Label label)
+        {
+            label.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Red"));
+        }
+        
+        private void ResetLeftButtons()
+        {
+            LEFT1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            LEFT2.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            LEFT3.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            LEFT4.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+
+
+            for (int i = 0; i < 4; i++)
+            {
+                string btn = $"LEFT{i + 1}";
+                Button button = (Button)FindName(btn);
+
+
+                if (button != null)
+                {
+                    button.IsEnabled = true;
+                    RemoveButtonEvents(button);
+                }
+            }
+        }
+        
+        private void ResetRightButtons()
+        {
+
+            RIGHT1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            RIGHT2.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            RIGHT3.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            RIGHT4.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            RIGHT5.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            RIGHT6.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+            RIGHT7.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF000000"));
+
+
+            for (int i = 0; i < 7; i++)
+            {
+                string btn = $"RIGHT{i + 1}";
+                Button button = (Button)FindName(btn);
+
+
+                if (button != null)
+                {
+                    button.IsEnabled = true;
+                    RemoveButtonEvents(button);
+                }
+            }
+        }
+
+        //CHECKS THE BUTTON TAG FOR AN EXISTING EVENT
+        private void RemoveButtonEvents(Button button)
+        {
+            if (button.Tag is RoutedEventHandler clickHandler)
+            {
+                button.Click -= clickHandler;
+            }
+        }
+
+        #endregion
 
     }
+
+
+    #region REFERENCES SECTION
 
     /*
     ======================================
@@ -575,41 +897,13 @@ namespace BookSoek
 
                     (2)
     --------------------------------------
-            AUTHOR:      
-         CORPERATE:      
-           WEBSITE:      
-         PAGE NAME:      
-    DATE PUBLISHED:      
-     DATE ACCESSED:      
-               URL:      
+         CORPERATE:      GeeksForGeeks
+           WEBSITE:      geeksforgeeks
+         PAGE NAME:      C# Dictionary with examples
+     DATE ACCESSED:      26/10/2023
+               URL:      https://www.geeksforgeeks.org/c-sharp-dictionary-with-examples/?ref=lbp#discuss
     
-
-                    (3)
-    --------------------------------------
-            AUTHOR:      
-         CORPERATE:      
-           WEBSITE:      
-         PAGE NAME:      
-    DATE PUBLISHED:      
-     DATE ACCESSED:      
-               URL:      
-    
-
-                    (4)
-    --------------------------------------
-            AUTHOR:      
-         CORPERATE:      
-           WEBSITE:      
-         PAGE NAME:      
-    DATE PUBLISHED:      
-     DATE ACCESSED:      
-               URL:      
-    
-
-    
-    
-
-
-
     */
+
+    #endregion  
 }
