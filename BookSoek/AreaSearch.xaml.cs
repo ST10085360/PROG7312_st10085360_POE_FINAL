@@ -641,7 +641,6 @@ namespace BookSoek
             if (clickCount == 5) 
             { 
                 int level = 0;
-                int score = 0;
                 foreach (var item in UserChoices)
                 {
                     string lbl = $"match{level}";
@@ -659,7 +658,7 @@ namespace BookSoek
 
                 CalculateScore();
                 Score.Content = score;
-
+                score = 0;
                 rbEasy.IsEnabled = true;
                 rbHard.IsEnabled = true;   
             }

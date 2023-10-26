@@ -34,10 +34,10 @@ namespace BookSoek
 
 
 
-        String blankSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Blank.png";
-        String goldSource = @"C:\\Users\\lab_services_student\\source\\repos\\PROG7312_st10085360_POE\\BookSoek\\Images\\Gold.png";
+        String blankSource = @"D:\UNI\SEMESTER2\PROG\POE\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Blank.png";
+        String goldSource = @"D:\UNI\SEMESTER2\PROG\POE\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Gold.png";
 
-       
+
 
 
         public BookSorting()
