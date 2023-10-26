@@ -750,6 +750,9 @@ namespace BookSoek
         //REMAIN CONSISTENT UNTIL THE USER DECIDES TO CHANGE IT
         private void New_Click(object sender, RoutedEventArgs e)
         {
+            //SWITCH TO NEW GAMEMODE
+            gamemode++;
+
             //RESET THE SELECTED BUTTONS FOR A NEW GAME
             ChosenLeftOptions.Clear();
             String[] range = { "LEFT1", "LEFT2", "LEFT3", "LEFT4" };
