@@ -1,0 +1,130 @@
+|000 Computer Science, Knowledge, and Systems
+||010 Bibliographies
+|||014 Bibliographies of anonymous and pseudonymous works
+|||016 Bibliographies of works on specific subjects
+|||017 General subject catalogues
+||030 Encyclopaedias and books of facts
+|||032 Encyclopaedias in English
+|||034 Encyclopaedias in French, Occitan, and Catalan
+|||036 Encyclopaedias in Spanish and Portuguese
+||050 Magazines, journals and serials
+|||053 Serials in other Germanic languages
+|||054 Serials in French, Occitan, and Catalan
+|||056 Serials in Spanish and Portuguese
+|100 Philosophy
+||110 Metaphysics
+|||111 Ontology
+|||113 Cosmology (Philosophy of nature)
+|||119 Number and quantity
+||120 Epistemology
+|||121 Epistemology (Theory of knowledge)
+|||123 Determinism and indeterminism
+|||125 Infinity
+||130 Parapsychology and occultism
+|||132 Mental derangements
+|||134 Mesmerism and Clairvoyance
+|||138 Physiognomy
+|200 Religion
+||210 Philosophy and theory of religion
+|||213 Creation
+|||214 Theodicy
+|||218 Humankind
+||220 The Bible
+|||222 Historical books of Old Testament
+|||225 New Testament
+|||229 Apocrypha, pseudepigrapha, and inter-testamental works
+||230 Christianity
+|||232 Jesus Christ and his family
+|||235 Spiritual beings
+|||239 Apologetics and polemics
+|300 Social sciences
+||310 Statistics
+|||311 Theory and Methods
+|||313 Special topics
+|||315 General statistics of Asia
+||320 Political science
+|||321 Systems of governments and states
+|||323 Civil and political rights
+|||326 Slavery and emancipation
+||330 Economics
+|||334 Cooperatives
+|||335 Socialism and related systems
+|||339 Macroeconomics
+|400 Language
+||410 Linguistics
+|||412 Etymology of standard forms of languages
+|||414 Phonology and phonetics of standard forms of languages
+|||416 Prosody
+||420 English and Old English languages
+|||422 Etymology of standard English
+|||423 Dictionaries of standard English
+|||427 Historical and geographical variations
+||430 German and related languages
+|||432 Etymology of standard German
+|||435 Grammar of standard German
+|||439 Other Germanic languages
+|500 Science
+||510 Mathematics
+|||511 General principles of mathematics
+|||512 Algebra
+|||515 Analysis
+||520 Astronomy
+|||521 Celestial mechanics
+|||525 Earth
+|||537 Celestial navigation
+||530 Physics
+|||531 Classical mechanics
+|||534 Sound and related vibrations
+|||535 Light and related radiation
+|600 Technology
+||610 Medicine and health
+|||612 Human physiology
+|||613 Personal health and safety
+|||616 Diseases
+||620 Engineering
+|||621 Applied physics
+|||623 Military and nautical engineering
+|||625 Engineering of railroads
+||630 Agriculture
+|||633 Plant injuries, diseases, pests
+|||634 Orchards, fruits, forestry
+|||638 Insect culture
+|700 Arts and recreation
+||710 Area planning and landscape architecture
+|||714 Water features
+|||715 Woody plants
+|||719 Natural landscapes
+||720 Architecture
+|||723 Architecture from c. 200 to 1399
+|||725 Public structures
+|||726 Buildings for religious and related purposes
+||730 Sculpture, ceramics and metalwork
+|||731 Processes, forms, subjects of sculpture
+|||735 Sculpture from 1400
+|||736 Caving and carvings
+|800 Literature
+||810 American literature in English
+|||811 American poetry in English
+|||813 American fiction in English
+|||814 American essays in English
+||820 English and Old English literatures
+|||822 English drama
+|||825 English speeches
+|||828 English miscellaneous writings
+||830 German and related literatures
+|||833 German fiction
+|||835 German Speeches
+|||839 Other Germanic literatures
+|900 History and geography
+||910 Geography and travel
+|||911 Historical geography
+|||914 Geography of and travel in Europe
+|||917 Geography of and travel in North America
+||940 History of Europe
+|||942 England and Whales
+|||944 France and Monaco
+|||948 Scandinavia
+||950 History of Asia
+|||952 Japan
+|||955 Iran
+|||958 Central Asia

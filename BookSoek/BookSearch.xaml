@@ -8,7 +8,91 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BookSearch">
 
-    <Grid>
-        <Label Content="Game coming soon!"/>
+    <Page.Resources>
+        <Style x:Key="RoundButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse x:Name="ellipse" Fill="Transparent" Stroke="Green" StrokeThickness="3"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ellipse" Property="Stroke" Value="White"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+
+    <Grid x:Name="grdMain" Height="420">
+        <Grid x:Name="grdLeft" Width="250" HorizontalAlignment="Left" Background="White">
+            <Grid Height="379" VerticalAlignment="Top">
+                <Label Content="Boek" HorizontalAlignment="Left" Margin="38,80,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
+                <Label Content="Sorting." HorizontalAlignment="Left" Margin="58,115,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
+                <Label HorizontalAlignment="Left" Margin="30,177,0,85" FontSize="10" FontWeight="Bold" Width="205">
+                    <TextBlock TextWrapping="Wrap" Width="200" Height="120">
+            This activity allows you to practise sorting call numbers according their numeric values, and alphabetic values. To begin, simply select each call number in the order that they should appear on the shelf. Your selections will appear on the right of the list. When you are finished click confirm...
+                    </TextBlock>
+                </Label>
+            </Grid>
+
+        </Grid>
+        <Grid x:Name="grdRight" Width="550" HorizontalAlignment="Left" Background="#FF212529" Margin="250,0,0,0">
+
+            <Grid Width="300" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <TreeView Name="BookView" SelectedItemChanged="TreeView_SelectedItemChanged" PreviewMouseDown="BookView_PreviewMouseDown">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Book}" />
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+
+                <Label Name="feedbackLabel" Content="" VerticalAlignment="Bottom" />
+
+
+            </Grid>
+            
+            
+            
+            <Grid Width="250" HorizontalAlignment="Right" Margin="0,0,0,0">
+                <Grid Height="200" VerticalAlignment="Top" Margin="0,0,0,0">
+                    <Button x:Name="Confirm" Content="Confirm" Foreground="Green" Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="40,0,0,0" />
+                    <Button x:Name="Retry" Content="Retry" Foreground="Green"  Style="{StaticResource RoundButton}" Width="70" Height="70" HorizontalAlignment="Left" Margin="140,0,0,0" />
+                </Grid>
+
+                <Grid  Height="200" VerticalAlignment="Top" Margin="0,200,0,0">
+                    <Grid Height="35" VerticalAlignment="Top" Margin="0,0,0,0">
+                        <Label Content="Results" FontSize="23" Foreground="White" HorizontalAlignment="Center" />
+                    </Grid>
+                    <Grid Height="30" VerticalAlignment="Top" Margin="0,35,0,0">
+                        <Grid Width="200" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Label Content="Total Correct Placements: " FontSize="16" Foreground="White" HorizontalAlignment="Center" />
+
+                        </Grid>
+                        <Grid Width="50" HorizontalAlignment="Left" Margin="200,0,0,0">
+                            <Label x:Name="Score" Content="" FontSize="16" Foreground="White" HorizontalAlignment="Center" Width="50" />
+
+                        </Grid>
+                    </Grid>
+                    <Grid Height="135" VerticalAlignment="Bottom">
+                        <Grid Height="60" Width="180" Margin="0,0,0,40">
+                            <Image x:Name="star1"  Height="55" Width="55" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                            <Image x:Name="star2"  Height="55" Width="55" HorizontalAlignment="Left" Margin="60,0,0,0"/>
+                            <Image x:Name="star3"  Height="55" Width="55" HorizontalAlignment="Left" Margin="120,0,0,0"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
     </Grid>
 </Page>
