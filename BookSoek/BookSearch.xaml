@@ -167,7 +167,6 @@
                         </TreeView.ItemTemplate>
                     </TreeView>
 
-                    <Label Name="feedbackLabel" Content="" VerticalAlignment="Bottom" />
                     <Label Content="Area To Find:" FontSize="13" Foreground="Black" HorizontalAlignment="Left" Margin="20,10,0,375" />
                     <Label x:Name="ToFind" Content="" FontSize="16" Foreground="Black" HorizontalAlignment="Left" Margin="20,26,0,359" />
 
