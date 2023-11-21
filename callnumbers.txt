@@ -11,6 +11,10 @@
 |||053 Serials in other Germanic languages
 |||054 Serials in French, Occitan, and Catalan
 |||056 Serials in Spanish and Portuguese
+||070 News Media, journalism, and publishing
+|||071 Newspapers in North America
+|||075 Newspapers in Italy and adjacent islands
+|||077 Newspapers in eastern Europe; in Russia
 |100 Philosophy
 ||110 Metaphysics
 |||111 Ontology
@@ -24,6 +28,10 @@
 |||132 Mental derangements
 |||134 Mesmerism and Clairvoyance
 |||138 Physiognomy
+||140 Philosophical schools of thought
+|||141 Idealism and related systems and doctrines 
+|||145 Sensationalism
+|||147 Pantheism and related systems and doctrines
 |200 Religion
 ||210 Philosophy and theory of religion
 |||213 Creation
@@ -37,6 +45,10 @@
 |||232 Jesus Christ and his family
 |||235 Spiritual beings
 |||239 Apologetics and polemics
+||240 Christian practice and observance
+|||241 Christian ethics
+|||242 Devotional literature
+|||243 Evangelistic writings for individuals and families
 |300 Social sciences
 ||310 Statistics
 |||311 Theory and Methods
@@ -50,6 +62,10 @@
 |||334 Cooperatives
 |||335 Socialism and related systems
 |||339 Macroeconomics
+||340 Law
+|||341 Law of nations 
+|||346 Private law 
+|||348 Laws, regulations, cases
 |400 Language
 ||410 Linguistics
 |||412 Etymology of standard forms of languages
@@ -63,6 +79,10 @@
 |||432 Etymology of standard German
 |||435 Grammar of standard German
 |||439 Other Germanic languages
+||440 French and related languages
+|||443 Dictionaries of standard French
+|||445 Grammar of standard French
+|||446 Not assigned or no longer used 
 |500 Science
 ||510 Mathematics
 |||511 General principles of mathematics
@@ -76,6 +96,10 @@
 |||531 Classical mechanics
 |||534 Sound and related vibrations
 |||535 Light and related radiation
+||540 Chemistry
+|||540 Chemistry and allied sciences
+|||541 Physical chemistry
+|||543 Analytical chemistry
 |600 Technology
 ||610 Medicine and health
 |||612 Human physiology
@@ -89,6 +113,10 @@
 |||633 Plant injuries, diseases, pests
 |||634 Orchards, fruits, forestry
 |||638 Insect culture
+||640 Home and family management
+|||641 Food and drink
+|||642 Meals and table service
+|||645 Household furnishings
 |700 Arts and recreation
 ||710 Area planning and landscape architecture
 |||714 Water features
@@ -102,6 +130,10 @@
 |||731 Processes, forms, subjects of sculpture
 |||735 Sculpture from 1400
 |||736 Caving and carvings
+||740 Graphic arts and decorative arts
+|||743 Drawing and drawings by subject
+|||746 Textile arts 
+|||748 Glass
 |800 Literature
 ||810 American literature in English
 |||811 American poetry in English
@@ -115,6 +147,10 @@
 |||833 German fiction
 |||835 German Speeches
 |||839 Other Germanic literatures
+||840 French and related literatures
+|||841 French poetry
+|||842 French drama
+|||846 French letters
 |900 History and geography
 ||910 Geography and travel
 |||911 Historical geography
@@ -128,3 +164,7 @@
 |||952 Japan
 |||955 Iran
 |||958 Central Asia
+||970 History of North America
+|||971 Canada
+|||973 United States
+|||977 North central United States

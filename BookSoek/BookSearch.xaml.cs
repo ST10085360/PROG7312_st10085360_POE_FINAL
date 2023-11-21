@@ -501,11 +501,11 @@ namespace BookSoek
 
 
 
-            if (attempts > 0 && attempts < 5)
+            if (attempts > 0 && attempts <= 5)
             {
                 penalty += 2;
             }
-            else if(attempts > 5 && attempts < 8)
+            else if(attempts > 5 && attempts <= 8)
             {
                 penalty += 4;
             }
@@ -520,17 +520,18 @@ namespace BookSoek
             {
                 finalPenalty = penalty * 2;
             }
-            else if (penalty > 10 && penalty < 15)
+            else if (penalty >= 10 && penalty < 15)
             {
                 finalPenalty = penalty * 4;
             }
-            else if (penalty > 15)
+            else if (penalty >= 15)
             {
                 finalPenalty = penalty * 6;
             }
 
             score = 100 - finalPenalty;
 
+            MessageBox.Show($"{score} , {finalPenalty}, {penalty}");
 
             star1.Visibility = Visibility.Visible;
             star2.Visibility = Visibility.Visible;
