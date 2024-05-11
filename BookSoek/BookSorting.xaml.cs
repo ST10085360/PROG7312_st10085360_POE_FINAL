@@ -168,7 +168,7 @@ namespace BookSoek
         //METHOD THAT GENERATES RANDOM CALL NUMBERS
         private void GenerateCallNumbers()
         {
-            string[] existingSurnames = { "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor" };
+            string[] existingSurnames = { "Smith", "Johnson", "Williams", "Van Huyssteen", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor" };
 
             Random random = new Random();
             String callNumber;
@@ -229,6 +229,7 @@ namespace BookSoek
                     SolidColorBrush brush = new SolidColorBrush(Colors.Red);
 
                     label.Foreground = brush;
+
                 }
                 else
                 {
