@@ -28,10 +28,10 @@ namespace BookSoek
     /// </summary>
     public partial class BookSearch : Page
     {
-        private string filePath = "D:/UNI/SEMESTER2/PROG/POE/PROG7312_st10085360_POE_FINAL/callnumbers.txt";
+        private string filePath = @"C:\Users\lab_services_student\source\repos\PROG7312_st10085360_POE_FINAL\callnumbers.txt";
 
-        String blankSource = @"D:\UNI\SEMESTER2\PROG\POE\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Blank.png";
-        String goldSource = @"D:\UNI\SEMESTER2\PROG\POE\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Gold.png";
+        String blankSource = @"C:\Users\lab_services_student\source\repos\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Blank.png";
+        String goldSource = @"C:\Users\lab_services_student\source\repos\PROG7312_st10085360_POE_FINAL\BookSoek\Images\Gold.png";
 
         private List<TreeNode> nodes;
 
@@ -406,10 +406,6 @@ namespace BookSoek
                     gameTimer.Stop();
                     CalculateScore(penalty);
                 }
-                else
-                {
-                    feedbackLabel.Content = "Wrong choice. Try again.";
-                }
             }
 
             
@@ -530,8 +526,6 @@ namespace BookSoek
             }
 
             score = 100 - finalPenalty;
-
-            MessageBox.Show($"{score} , {finalPenalty}, {penalty}");
 
             star1.Visibility = Visibility.Visible;
             star2.Visibility = Visibility.Visible;

@@ -229,6 +229,7 @@ namespace BookSoek
                     SolidColorBrush brush = new SolidColorBrush(Colors.Red);
 
                     label.Foreground = brush;
+
                 }
                 else
                 {

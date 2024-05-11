@@ -1,5 +1,5 @@
 # PROG7312_st10085360_POE
-# BoekSoek V2
+# BoekSoek V3
 
 [This is a simple book sorting application developed in C# using  WPF. The application allows users to practice sorting books based on call numbers. It's designed to showcase various programming concepts and techniques.]
 
@@ -28,6 +28,14 @@ VERSION 2.0
 - Calculates the user's score based on the correct matches
 - Features a responsive graphical user interface (GUI) for user interaction.
 
+VERSION 3.0
+- Introduces a search tree
+- Allows the user to search their way through areas to find a provided call number
+- Provides a neat and intuitive tree view
+- Checks the answers by referencing a tree
+- Calculates the user's score based on the amount of attempts and time spent on each step
+- Features a responsive graphical user interface (GUI) for user interaction.
+
 ## Prerequisites
 
 - [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) (for Windows Forms) or [WPF](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/getting-started/getting-started-with-wpf) (for WPF) runtime environment.
@@ -41,6 +49,11 @@ VERSION 2.0
 
 ``` bash
 git clone https://github.com/yourusername/book-sorting-app.git
+```
+
+
+``` bash
+console.writeln('doos')
 ```
 2. Open the project in your preferred C# development environment.
 3. Build and run the application to start practicing book sorting.
