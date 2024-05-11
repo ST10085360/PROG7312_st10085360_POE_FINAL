@@ -50,6 +50,11 @@ VERSION 3.0
 ``` bash
 git clone https://github.com/yourusername/book-sorting-app.git
 ```
+
+
+``` bash
+console.writeln('doos')
+```
 2. Open the project in your preferred C# development environment.
 3. Build and run the application to start practicing book sorting.
 
